@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <form id="issue-form">
+        <button class="btn-get-data" id="get-data">Get data</button>
+        <div>
+            <label>
+                <input type="radio" name="issue-type" value="feature"> Feature
+            </label>
+            <label>
+                <input type="radio" name="issue-type" value="bug"> Bug
+            </label>
+        </div>
+    </form>
+    <br />
+
+    <div class="form-group">
+        <label for="git-branch">Branch</label>
+        <input type="text" id="git-branch" name="git-branch" disabled>
+        <button id="btn-git-branch">Copy</button>
+    </div>
+
+    <div class="form-group">
+        <label for="git-commit-msg">Commit message</label>
+        <input type="text" id="git-commit-msg" disabled>
+        <button id="btn-git-commit-msg">Copy</button>
+    </div>
+
+    <div class="form-group">
+        <label for="git-checkout-cmd">Checkout command</label>
+        <input type="text" id="git-checkout-cmd" disabled>
+        <button id="btn-git-checkout-cmd">Copy</button>
+    </div>
+
+    <div class="form-group">
+        <label for="git-commit-cmd">Commit command</label>
+        <input type="text" id="git-commit-cmd" disabled>
+        <button id="btn-git-commit-cmd">Copy</button>
+    </div>
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>
