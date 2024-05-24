@@ -7,17 +7,15 @@
 </head>
 
 <body>
-    <form id="issue-form">
-        <button class="btn-get-data" id="get-data">Get data</button>
-        <div>
-            <label>
-                <input type="radio" name="issue-type" value="feature"> Feature
-            </label>
-            <label>
-                <input type="radio" name="issue-type" value="bug"> Bug
-            </label>
-        </div>
-    </form>
+    <button class="btn-get-data" id="get-data">Get data</button>
+    <div>
+        <label>
+            <input id='radioType_feature' type="radio" name="issue-type" value="feature" checked> Feature
+        </label>
+        <label>
+            <input id='radioType_bug' type="radio" name="issue-type" value="bug"> Bug
+        </label>
+    </div>
     <br />
 
     <div class="form-group">

@@ -1,31 +1,25 @@
-const contentPort = chrome.runtime.connect({ name: "contentPort" });
-let ticketId;
-let ticketSubject;
-
-contentPort.postMessage({
-    type: "initPort"
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (sender.id === chrome.runtime.id) {
+        if (sender.tab) {
+            console.log('Received message from tab script:', message);
+        } else {
+            console.log('Received message from background script:', message);
+            if (message.type === "getIssueData") {
+                executeScript(sendResponse);
+            }
+        }
+    }
 });
 
 function getIssueData() {
     ticketId = document.querySelector('.ticket__key-number')?.textContent.trim() || '';
     ticketSubject = document.querySelector('.markdown-body')?.textContent.trim() || '';
+    return { ticketId, ticketSubject };
 }
 
-function executeScript() {
-    getIssueData();
-    contentPort.postMessage({
+function executeScript(sendResponse) {
+    chrome.runtime.sendMessage({
         type: "issueData",
-        value: {
-            ticketId,
-            ticketSubject,
-        }
-    });
+        value: getIssueData()
+    })
 }
-
-contentPort.onMessage.addListener(function (msg, sender) {
-    if (msg.type === "getIssueData") {
-        executeScript();
-    }
-});
-
-document.addEventListener('DOMContentLoaded', executeScript);
